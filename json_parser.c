@@ -79,6 +79,13 @@
 #define CHECK_ERR_GOTO(ctx,A, ...) if((A)) { _PRINT_ERR_GOTO(ctx,__VA_ARGS__, "");}
 #define CHECK_ERR_RET(ctx,A, ...) if((A)) { _PRINT_ERR_RET(ctx,__VA_ARGS__, "");}
 
+
+static inline int json_token_streq(char *js, jsmntok_t *t, char *s)
+{
+	return (strncmp(js + t->start, s, t->end - t->start) == 0
+			&& strlen(s) == (size_t) (t->end - t->start));
+}
+
 static int json_tokenise(json_parse_str * ctx)
 {
 	jsmn_parser parser;
@@ -126,7 +133,7 @@ static int json_tokenise_expand(json_parse_str * ctx, int pos)
 
 	jsmn_init(&parser);
 
-	ret = jsmn_parse(&parser, buffer, strlen(buffer), &ctx->json_tokens[ctx->tokens_count], n);
+	ret = jsmn_parse_offset(&parser, buffer, strlen(buffer), &ctx->json_tokens[ctx->tokens_count], n, pos);
 
 	CHECK_ERR_RET(ctx, ret == JSMN_ERROR_NOMEM,
 				"Invalid JSON string\n");
@@ -181,7 +188,7 @@ int json_parse_expand_conf_file(json_parse_str * ctx, char * filename)
 	int json_file;
 	int nb_caract;
 	int current_char;
-	int pos = ctx->json_tokens[ctx->tokens_count-1].end;
+	int pos = ctx->json_tokens[0].end + 1;
 
 	// Open file
 	json_file = open(filename, O_RDONLY, 0640);
@@ -198,7 +205,7 @@ int json_parse_expand_conf_file(json_parse_str * ctx, char * filename)
 	CHECK_ERR_RET(ctx, current_char != nb_caract,
 			"Could not extract data from file\n");
 
-	ctx->json_buffer[pos + nb_caract + 1] = '\0';
+	ctx->json_buffer[pos + nb_caract] = '\0';
 
 	// Parse the buffer
 	CHECK_ERR_RET(ctx, json_tokenise_expand(ctx, pos),

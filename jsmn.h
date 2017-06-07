@@ -69,6 +69,8 @@ void jsmn_init(jsmn_parser *parser);
  */
 jsmnerr_t jsmn_parse(jsmn_parser *parser, const char *js, size_t len,
 		jsmntok_t *tokens, unsigned int num_tokens);
+jsmnerr_t jsmn_parse_offset(jsmn_parser *parser, const char *js, size_t len,
+		jsmntok_t *tokens, unsigned int num_tokens, int offset);
 
 #ifdef __cplusplus
 }
@@ -83,8 +85,6 @@ typedef struct json_parse_str
 	int tokens_count;
 	char verbose;
 } json_parse_str;
-
-inline int json_token_streq(char *js, jsmntok_t *t, char *s);
 
 int json_parse_conf_file(json_parse_str * ctx, char * filename);
 
