@@ -192,7 +192,8 @@ int json_parse_expand_conf_file(json_parse_str * ctx, char * filename)
 
 	// Open file
 	json_file = open(filename, O_RDONLY, 0640);
-	CHECK_ERR_RET(ctx, json_file < 0, "Could not open JSON file\n");
+	if (json_file < 0)
+		return -1;
 
 	//Get file size
 	nb_caract = lseek(json_file, 0, SEEK_END);
