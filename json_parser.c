@@ -13,6 +13,7 @@
 #include <string.h>
 #include "jsmn.h"
 #include <fcntl.h>
+#include <unistd.h>
 # include <errno.h>
 # include <syslog.h>
 
