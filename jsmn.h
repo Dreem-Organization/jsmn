@@ -118,6 +118,8 @@ int json_get_array_nint(json_parse_str * ctx, char * key_str, int * val_array, i
 
 int json_free_array_string(char *** val_array, int array_size);
 
+int json_is_key_exist(json_parse_str * ctx, char * key_str);
+
 int json_parse_free(json_parse_str * ctx);
 
 

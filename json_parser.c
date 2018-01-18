@@ -557,6 +557,12 @@ int json_get_array_string(json_parse_str * ctx, char * key_str, char *** val_arr
 	return 0;
 }
 
+int json_is_key_exist(json_parse_str * ctx, char * key_str)
+{
+	if (json_get_key_token(ctx, key_str) < 0) return 0;
+	return 1;
+}
+
 int json_get_value_string_into_array(json_parse_str * ctx, char * key_str, int ind, char ** val_str)
 {
 	int key_ind;
