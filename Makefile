@@ -6,7 +6,7 @@ all: libjsmn.a
 libjsmn.a: jsmn.o json_parser.o
 	$(AR) rc $@ $^
 
-%.o: %.c jsmn.h
+%.o: %.c jsmn_dreem.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 test: jsmn_test
@@ -25,7 +25,7 @@ jsondump: example/jsondump.o libjsmn.a
 	
 install:
 	cp libjsmn.a /usr/lib/libjsmn_dreem.a
-	cp jsmn.h /usr/include/jsmn_dreem.h
+	cp jsmn_dreem.h /usr/include/jsmn_dreem.h
 
 clean:
 	rm -f jsmn.o jsmn_test.o json_parser.o example/simple.o

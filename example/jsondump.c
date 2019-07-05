@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include "../jsmn.h"
+#include "../jsmn_dreem.h"
 
 /* Function realloc_it() is a wrapper function for standart realloc()
  * with one difference - it frees old memory pointer in case of realloc
