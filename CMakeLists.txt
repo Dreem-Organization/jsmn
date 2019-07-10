@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 3.14)
 project (jsmn_dreem)
 
 add_library(jsmn_dreem STATIC jsmn.c json_parser.c)
