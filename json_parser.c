@@ -23,12 +23,12 @@
 
 // Malloc
 #define MALLOC(ctx,destination, type, size) \
-	CHECK_ERR_RET(ctx,destination != NULL, "adsadsAlready allocated !!"); \
+	CHECK_ERR_RET(ctx,destination != NULL, "Already allocated !!"); \
 	destination = (type *) malloc(size * sizeof(type))
 
 // Calloc
 #define CALLOC(ctx,destination, type, size) \
-	CHECK_ERR_RET(ctx,destination != NULL, "aaAlready allocated !!"); \
+	CHECK_ERR_RET(ctx,destination != NULL, "Already allocated !!"); \
 	destination = (type *) calloc(size, sizeof(type))
 
 #define FREE_ARRAY_LOOP(a,n,i) \
