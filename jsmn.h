@@ -122,9 +122,5 @@ int json_is_key_exist(json_parse_str * ctx, char * key_str);
 
 int json_parse_free(json_parse_str * ctx);
 
-int json_get_key_token(json_parse_str * ctx, char * key_str);
-
-int json_get_int(json_parse_str * ctx, int key_ind, int * val_int);
-
 
 #endif /* __JSMN_H_ */
