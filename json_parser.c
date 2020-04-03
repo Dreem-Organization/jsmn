@@ -23,12 +23,12 @@
 
 // Malloc
 #define MALLOC(ctx,destination, type, size) \
-	CHECK_ERR_RET(ctx,destination != NULL, "Already allocated !!"); \
+	CHECK_ERR_RET(ctx,destination != NULL, "adsadsAlready allocated !!"); \
 	destination = (type *) malloc(size * sizeof(type))
 
 // Calloc
 #define CALLOC(ctx,destination, type, size) \
-	CHECK_ERR_RET(ctx,destination != NULL, "Already allocated !!"); \
+	CHECK_ERR_RET(ctx,destination != NULL, "aaAlready allocated !!"); \
 	destination = (type *) calloc(size, sizeof(type))
 
 #define FREE_ARRAY_LOOP(a,n,i) \
@@ -219,7 +219,7 @@ int json_parse_expand_conf_file(json_parse_str * ctx, char * filename)
 }
 
 
-static int json_get_key_token(json_parse_str * ctx, char * key_str)
+int json_get_key_token(json_parse_str * ctx, char * key_str)
 {
 	int i;
 
@@ -238,7 +238,7 @@ static int json_get_key_token(json_parse_str * ctx, char * key_str)
 	return -1;
 }
 
-static int json_get_int(json_parse_str * ctx, int key_ind, int * val_int)
+int json_get_int(json_parse_str * ctx, int key_ind, int * val_int)
 {
 	jsmntok_t * int_token = &ctx->json_tokens[key_ind];
 
